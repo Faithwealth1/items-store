@@ -1,0 +1,28 @@
+/* Escrow page specific styles (optional - Tailwind handles most) */
+.escrow-order-id { color:#3000b9; }
+.escrow-status-released { background:#ff7c32; color:#5b2809; }
+.escrow-active-tab { background:#3000b9; }
+.escrow-active-tab:hover { background:#27009c; }
+.transaction-reference { color:#3000b9; font-weight:600; }
+.awaiting-release-badge { border:1px solid #d6d1e0; background:#e9e6f0; color:#262432; }
+.awaiting-release-badge .bg-orange-500 { background:#ff7c32; }
+.verified-label,.verified-status { color:#3000b9; }
+.party-avatar { width:56px; height:56px; flex:0 0 56px; display:block; border:0; border-radius:50%; object-fit:cover; }
+.vendor-rating { display:flex; align-items:center; gap:5px; margin-top:4px; color:#3000b9; font-size:11px; line-height:14px; }
+.vendor-rating svg { width:13px; height:13px; flex:0 0 13px; }
+.verified-status { display:flex; align-items:center; gap:5px; font-weight:600; }
+.risk-score { display:inline-flex; align-items:center; padding:3px 9px; border-radius:5px; background:#e9e6f0; color:#3000b9; font-size:12px; font-weight:600; }
+.audit-events { position:relative; display:grid; gap:31px; padding:26px 14px 16px 26px; }
+.audit-events::before { content:""; position:absolute; top:24px; bottom:0; left:0; width:2px; background:#d1cbea; }
+.audit-entry { min-width:0; }
+.audit-entry > div { min-width:0; }
+.release-funds-button,.hold-dispute-button { width:100%; min-height:44px; display:flex; align-items:center; justify-content:center; gap:9px; padding:8px 14px; border-radius:5px; font:500 13px Inter,ui-sans-serif,system-ui,sans-serif; cursor:pointer; transition:background-color .15s,border-color .15s,transform .15s; }
+.release-funds-button { margin-bottom:15px; border:1px solid #3000b9; background:#3000b9; color:white; }
+.release-funds-button:hover { background:#27009c; }
+.hold-dispute-button { margin-bottom:24px; border:1px solid #df4141; background:white; color:#c51d26; }
+.hold-dispute-button:hover { background:#fff4f4; }
+.release-funds-button:active,.hold-dispute-button:active { transform:translateY(1px); }
+.release-funds-button svg,.hold-dispute-button svg { width:16px; height:16px; flex:0 0 16px; }
+.escrow-action-message { position:fixed; right:24px; bottom:22px; z-index:40; display:flex; align-items:center; gap:18px; padding:12px 16px; border:1px solid #d1cbea; border-radius:8px; background:#fff; color:#302747; box-shadow:0 8px 28px #21173a20; font-size:13px; }
+.escrow-action-message button { border:0; background:transparent; color:#6b6877; font-size:20px; cursor:pointer; }
+@media(max-width:640px) { .audit-entry > div > div { align-items:flex-start; flex-direction:column; gap:4px; } .escrow-action-message { right:12px; bottom:12px; left:12px; justify-content:space-between; } }
