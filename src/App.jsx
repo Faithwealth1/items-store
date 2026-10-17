@@ -3,6 +3,10 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import Escrow from "./Escrow.jsx";
 import EscrowDetails from "./EscrowDetails.jsx";
+import SupportCenter from "./SupportCenter";
+import SupportDetails from "./SupportDetails";
+import ProductModeration from "./ProductModeration";
+import ModerationDetails from "./ModerationDetails";
 
 // ====================== SIDEBAR (shared) ======================
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
@@ -18,8 +22,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { name: "Financial", icon: "▤", path: "/" },
     { name: "Seller Approval", icon: "◇", path: "/" },
     { name: "Sellers Management", icon: "♧", path: "/" },
-    { name: "Support", icon: "◉", path: "/" },
-    { name: "Content Moderation", icon: "◎", path: "/" },
+    { name: "Support", icon: "🎧", path: "/support" },
+    { name: "Content Moderation", icon: "📝", path: "/content-moderation" },
     { name: "Analytics", icon: "▥", path: "/" },
     { name: "Notification", icon: "♧", path: "/" },
     { name: "Permissions", icon: "⬟", path: "/" },
@@ -199,7 +203,7 @@ function ItemsList({ setSidebarOpen }) {
                   <tr
                     key={item.id}
                     onClick={() => navigate(`/item/${item.id.replace("#", "")}`)}
-                    className={item.flagged ? "flagged-row" : ""}
+                    className={item.flagged ? "flagged-row cursor-pointer" : "cursor-pointer"}
                   >
                     <td className="check-cell" onClick={(e) => e.stopPropagation()}>
                       <input type="checkbox" aria-label={`Select ${item.name}`} checked={selectedItemIds.includes(item.id)} onChange={(event) => setSelectedItemIds(event.target.checked ? [...selectedItemIds, item.id] : selectedItemIds.filter((id) => id !== item.id))} />
@@ -474,6 +478,22 @@ function App() {
           <Route
             path="/escrow/:id"
             element={<EscrowDetails setSidebarOpen={setSidebarOpen} />}
+          />
+          <Route
+             path="/support"
+             element={<SupportCenter setSidebarOpen={setSidebarOpen} />}
+          />
+          <Route
+              path="/support/:id"
+             element={<SupportDetails setSidebarOpen={setSidebarOpen} />}
+          />
+          <Route
+            path="/content-moderation"
+            element={<ProductModeration setSidebarOpen={setSidebarOpen} />}
+          />
+          <Route
+            path="/content-moderation/details"
+            element={<ModerationDetails setSidebarOpen={setSidebarOpen} />}
           />
         </Routes>
       </div>
