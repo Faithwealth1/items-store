@@ -7,6 +7,17 @@ import SupportCenter from "./SupportCenter";
 import SupportDetails from "./SupportDetails";
 import ProductModeration from "./ProductModeration";
 import ModerationDetails from "./ModerationDetails";
+import PlatformAnalytics from "./PlatformAnalytics";
+import NotificationCenter from "./NotificationCenter";
+import PermissionCenter from "./PermissionCenter";
+
+function SidebarIcon({ name }) {
+  if (name === "moderation") return <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 21 5v6c0 5.2-3.7 9-9 11-5.3-2-9-5.8-9-11V5l9-3Z" /><circle cx="11" cy="11" r="3.2" fill="none" stroke="white" strokeWidth="1.8" /><path d="m13.4 13.4 2.5 2.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" /></svg>;
+  if (name === "analytics") return <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor" /><path d="M7 16v-3m5 3V8m5 8v-6" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg>;
+  if (name === "notification") return <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM9 20a3 3 0 0 0 6 0H9Z" /></svg>;
+  if (name === "permissions") return <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 21 5v6c0 5.2-3.7 9-9 11-5.3-2-9-5.8-9-11V5l9-3Z" /><path fill="white" d="M12 7a3 3 0 0 0-1.7 5.5V16h3.4v-3.5A3 3 0 0 0 12 7Zm0 1.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z" /></svg>;
+  return name;
+}
 
 // ====================== SIDEBAR (shared) ======================
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
@@ -23,10 +34,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { name: "Seller Approval", icon: "◇", path: "/" },
     { name: "Sellers Management", icon: "♧", path: "/" },
     { name: "Support", icon: "🎧", path: "/support" },
-    { name: "Content Moderation", icon: "📝", path: "/content-moderation" },
-    { name: "Analytics", icon: "▥", path: "/" },
-    { name: "Notification", icon: "♧", path: "/" },
-    { name: "Permissions", icon: "⬟", path: "/" },
+    { name: "Content Moderation", icon: "moderation", path: "/content-moderation" },
+    { name: "Analytics", icon: "analytics", path: "/analytics" },
+    { name: "Notification", icon: "notification", path: "/notifications" },
+    { name: "Permissions", icon: "permissions", path: "/permissions" },
   ];
 
   return (
@@ -49,7 +60,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 to={item.path}
                 className={`nav-item ${isActive ? "nav-active" : ""}`}
               >
-                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-icon"><SidebarIcon name={item.icon} /></span>
                 <span>{item.name}</span>
               </Link>
             );
@@ -494,6 +505,18 @@ function App() {
           <Route
             path="/content-moderation/details"
             element={<ModerationDetails setSidebarOpen={setSidebarOpen} />}
+          />
+          <Route
+            path="/analytics"
+            element={<PlatformAnalytics setSidebarOpen={setSidebarOpen} />}
+          />
+          <Route
+            path="/notifications"
+            element={<NotificationCenter setSidebarOpen={setSidebarOpen} />}
+          />
+          <Route
+            path="/permissions"
+            element={<PermissionCenter setSidebarOpen={setSidebarOpen} />}
           />
         </Routes>
       </div>
