@@ -204,7 +204,7 @@ function PlatformAnalytics({ setSidebarOpen }) {
               </div>
 
               {/* X-axis labels */}
-              <div className="absolute bottom-0 left-12 right-0 flex justify-between text-xs text-gray-400 px-2">
+              <div className="absolute bottom-0 left-12 right-2 grid grid-cols-12 items-center text-center text-[9px] leading-none tracking-[-0.03em] text-gray-400 sm:text-xs sm:tracking-normal">
                 <span>Jan</span>
                 <span>Feb</span>
                 <span>Mar</span>
