@@ -1,7 +1,7 @@
 ﻿import { useState } from "react";
 
 function PlatformAnalytics({ setSidebarOpen }) {
-  const [period, setPeriod] = useState("Last 30 Days");
+  const [period, setPeriod] = useState("30 Days");
   const exportReport = () => {
     const rows = [["Platform Analytics Report", period], ["Metric", "Value", "Status"], ["Average order completion rate", "94.2%", "Needs Attention"], ["Dispute ratio", "1.8%", "Healthy"], ["Total volume (GMV)", "$2.4M", "+14.5% vs last period"], ["Active buyers", "142.8k", "+5.2% vs last period"], ["Active sellers", "12.4k", "+8.1% vs last period"], ["Platform revenue", "$345k", "+18.2% vs last period"]];
     const csv = rows.map((row) => row.map((cell) => `"${cell.replaceAll('"', '""')}"`).join(",")).join("\n");
@@ -41,12 +41,24 @@ function PlatformAnalytics({ setSidebarOpen }) {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setPeriod("Last 30 Days")}
-              className="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 bg-white"
-            >
-              {period}
-            </button>
+            <div className="relative inline-flex h-10 items-center">
+              <select
+                value={period}
+                onChange={(event) => setPeriod(event.target.value)}
+                aria-label="Select analytics date range"
+                className="h-full appearance-none px-4 pr-10 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 bg-white"
+              >
+                <option>1 Day</option>
+                <option>7 Days</option>
+                <option>30 Days</option>
+                <option>90 Days</option>
+              </select>
+              <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                <svg className="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </div>
             <button onClick={exportReport} className="flex w-25.5 shrink-0 items-center justify-center gap-2 px-3 py-2 bg-[#2d00b8] hover:bg-[#240095] active:bg-[#1d0078] text-white text-sm font-medium rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
